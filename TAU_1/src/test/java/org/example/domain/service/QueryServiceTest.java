@@ -1,5 +1,6 @@
 package org.example.domain.service;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Objects;
@@ -9,7 +10,7 @@ public class QueryServiceTest {
 
    @Test
    public void contextTest(){
-
+      assert true;
    }
 
    @Test
@@ -21,13 +22,13 @@ public class QueryServiceTest {
    @Test
    public void shouldCreateQueryWithCondition2(){
       String query = queryService.createQuery("name", "users", "name = 'abba'");
-      assert Objects.equals(query, "SELECT name FROM users WHERE name = 'abba'");
+      Assert.assertEquals("SELECT name FROM users WHERE name = 'abba'", query);
    }
 
    @Test
    public void shouldCreateQueryWithTwoColumns(){
       String query = queryService.createQuery("name, surname", "users", "name LIKE 'K%'");
-      assert Objects.equals(query, "SELECT name, surname FROM users WHERE name LIKE 'K%'");
+      Assert.assertTrue(Objects.equals(query, "SELECT name, surname FROM users WHERE name LIKE 'K%'"));
    }
 
    @Test(expected = RuntimeException.class)
